@@ -13,28 +13,15 @@ export default {
   props: {
     msg: String
   },
-  mounted() {
-    if (document.getElementById('pdfmake')) return;
-    var pdfTag = document.createElement("script");
-    pdfTag.src = "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.38/pdfmake.js";
-    pdfTag.id = "pdfmake";
-    document.getElementsByTagName('head')[0].appendChild(pdfTag);
-
-    if (document.getElementById('vfs')) return;
-    var vfsTag = document.createElement("script");
-    vfsTag.src = "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.38/vfs_fonts.js";
-    vfsTag.id = "vfs";
-    document.getElementsByTagName('head')[0].appendChild(vfsTag);
-
-  },
   methods: {
     pdfgen: function () {
-      if (pdfMake.vfs == undefined){// eslint-disable-line no-undef
-        var pdfFonts = require('pdfmake/build/vfs_fonts.js');
-        pdfMake.vfs = pdfFonts.pdfMake.vfs; // eslint-disable-line no-undef
+      var pdfMake = require('pdfmake/build/pdfmake.js')
+      if (pdfMake.vfs == undefined){
+        var pdfFonts = require('pdfmake/build/vfs_fonts.js')
+        pdfMake.vfs = pdfFonts.pdfMake.vfs;
       }
       var docDefinition = { content: 'This is an sample PDF printed with pdfMake' }
-      pdfMake.createPdf(docDefinition).download('optionalName.pdf') // eslint-disable-line no-undef
+      pdfMake.createPdf(docDefinition).download('optionalName.pdf')
     }
   }
 }

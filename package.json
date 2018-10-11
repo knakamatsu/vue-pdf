@@ -9,6 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "pdfmake": "^0.1.38",
     "vue": "^2.5.17"
   },
   "devDependencies": {
